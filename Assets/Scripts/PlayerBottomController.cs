@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerBottomController : Player
 {
 
@@ -11,7 +12,5 @@ public class PlayerBottomController : Player
         base.Start();
     }
 
-    void Update()
-    {
-    }
 }
+

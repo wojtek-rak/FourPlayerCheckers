@@ -5,9 +5,14 @@ using UnityEngine;
 public class BoardController : MonoBehaviour {
     public GameObject pawn;
     public Field[,] fields = new Field[8,8];
-    // Use this for initialization
+
+    // todo better same as player
+    private float width = 330f;
+    private float fieldSize;
+    
     void Awake() {
-		for(int i = 0; i < 8; i++)
+        fieldSize = width / 8f;
+        for (int i = 0; i < 8; i++)
         {
             for (int j = 0; j < 8; j++)
             {
@@ -30,11 +35,16 @@ public class BoardController : MonoBehaviour {
                 }
             }
         }
-
     }
-
-    // Update is called once per frame
-    void Update () {
-
+    
+    public int CalculateFieldX(float range)
+    {
+        var index = range / fieldSize;
+        return (int)index;
+    }
+    public int CalculateFieldY(float range)
+    {
+        var index = (width - range) / fieldSize;
+        return (int)index;
     }
 }

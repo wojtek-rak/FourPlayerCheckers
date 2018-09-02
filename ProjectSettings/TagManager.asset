@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Board
   - Corner
+  - GameManager
   layers:
   - Default
   - TransparentFX

@@ -10,9 +10,5 @@ public class PositionController : MonoBehaviour {
         board = GameObject.FindGameObjectWithTag("Board");
         Debug.Log(board.GetComponent<RectTransform>().rect.width);
     }
-	
-	// Update is called once per frame
-	void Update () {
-        
-    }
+
 }

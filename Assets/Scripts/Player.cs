@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerPosition { Upper, Bottom}
+public enum PlayerPosition { Bottom, Upper }
 
 public class Player : MonoBehaviour{
 
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour{
         var tempBoard = GameObject.FindGameObjectWithTag("Board");
         var corner = GameObject.FindGameObjectWithTag("Corner").transform;
         board = tempBoard.GetComponent<BoardController>();
-        width = 330f;// to do much better // tempBoard.GetComponent<RectTransform>().rect.width;
+        width = 330f;// to do much better same as Board // tempBoard.GetComponent<RectTransform>().rect.width;
         fieldSize = width / 8f;
         pwanPrefab = Resources.Load("Pawn");
         for (int i = 0; i < 12; i++)
