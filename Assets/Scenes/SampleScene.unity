@@ -124,10 +124,9 @@ GameObject:
   - component: {fileID: 41333919}
   - component: {fileID: 41333918}
   - component: {fileID: 41333920}
-  - component: {fileID: 41333921}
   m_Layer: 5
   m_Name: Board
-  m_TagString: Untagged
+  m_TagString: Board
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -196,18 +195,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 1159639288875408, guid: ce5dcb8637770f74f830d7d24216f22b, type: 2}
---- !u!114 &41333921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 41333916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab8ea7e0ca8e97941a4eb2cd93a6fb12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pawns: []
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,6 +334,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1162338644
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1162338646}
+  - component: {fileID: 1162338645}
+  m_Layer: 0
+  m_Name: LeftBottomCorner
+  m_TagString: Corner
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1162338645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1162338644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7933aad2688a1ee47a45667b49aa1c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  board: {fileID: 0}
+--- !u!4 &1162338646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1162338644}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 144.31056, y: 5.810562, z: -8.223213}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1558025849
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,6 +496,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b1760ac76c5c145a3f0f18cce0ae8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pwanPrefab: {fileID: 0}
+  pawns: []
 --- !u!4 &1670434032
 Transform:
   m_ObjectHideFlags: 0
