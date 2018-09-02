@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: ab8ea7e0ca8e97941a4eb2cd93a6fb12
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - pwanPrefab: {fileID: 1159639288875408, guid: ce5dcb8637770f74f830d7d24216f22b,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
