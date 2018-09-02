@@ -25,7 +25,6 @@ public class Player : MonoBehaviour{
         width = 330f;// to do much better // tempBoard.GetComponent<RectTransform>().rect.width;
         fieldSize = width / 8f;
         pwanPrefab = Resources.Load("Pawn");
-        Debug.Log(pwanPrefab);
         for (int i = 0; i < 12; i++)
         {
             var pawn = (GameObject)Instantiate(pwanPrefab, Vector3.zero, Quaternion.identity);
@@ -34,30 +33,54 @@ public class Player : MonoBehaviour{
             pawn.transform.parent = corner;
         }
         SetUpPawns();
+        SetUpColorPawns();
+    }
+    private void SetUpColorPawns()
+    {
+        Sprite sprite;
+        switch (playerPosition)
+        {
+            case PlayerPosition.Upper:
+                sprite = Resources.Load<Sprite>("player_2");
+                Debug.Log(sprite);
+                
+                foreach (var pawn in pawns)
+                {
+                    pawn.GetComponent<SpriteRenderer>().sprite = sprite;
+                }
+                break;
+            case PlayerPosition.Bottom:
+                sprite = Resources.Load<Sprite>("player_1");
+                Debug.Log(sprite);
+                foreach (var pawn in pawns)
+                {
+                    pawn.GetComponent<SpriteRenderer>().sprite = sprite;
+                }
+                break;
+        }
     }
     private void SetUpPawns()
     {
-        Debug.Log(fieldSize);
-        var count = 0;
         var row = 0;
         var col = 0;
+        var count = 0;
         switch(playerPosition)
         {
             case PlayerPosition.Upper:
-                while(count < pawns.Capacity)
+                row = 0;
+                col = 0;
+                while (count < pawns.Count)
                 {
                     var pawn = pawns[count];
                     if (board.fields[col, row].Free)
                     {
                         board.fields[col, row].Free = false;
                         pawn.transform.localPosition = new Vector3(col * fieldSize + fieldSize / 2f, width - row * fieldSize - fieldSize / 2f, 10f);
-                        Debug.Log("second");
                         if (++col >= 8)
                         {
                             col = 0;
                             row += 1;
                         }
-                        Debug.Log(col);
                         count += 1;
                     }
                     else
@@ -71,15 +94,34 @@ public class Player : MonoBehaviour{
                 }
                 break;
             case PlayerPosition.Bottom:
-
+                row = 7;
+                col = 7;
+                while (count < pawns.Count)
+                {
+                    var pawn = pawns[count];
+                    if (board.fields[col, row].Free)
+                    {
+                        board.fields[col, row].Free = false;
+                        pawn.transform.localPosition = new Vector3(col * fieldSize + fieldSize / 2f, width - row * fieldSize - fieldSize / 2f, 10f);
+                        if (--col <= -1)
+                        {
+                            col = 7;
+                            row -= 1;
+                        }
+                        count += 1;
+                    }
+                    else
+                    {
+                        if (--col <= -1)
+                        {
+                            col = 7;
+                            row -= 1;
+                        }
+                    }
+                }
                 break;
         }
-        
-
-        //foreach(var pawn in pawns)
-        //{
-        //    pawn.transform.position
-        //}
+       
     }
 
 }

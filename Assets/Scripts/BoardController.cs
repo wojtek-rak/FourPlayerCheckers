@@ -6,7 +6,7 @@ public class BoardController : MonoBehaviour {
     public GameObject pawn;
     public Field[,] fields = new Field[8,8];
     // Use this for initialization
-    void Start () {
+    void Awake() {
 		for(int i = 0; i < 8; i++)
         {
             for (int j = 0; j < 8; j++)
@@ -30,10 +30,11 @@ public class BoardController : MonoBehaviour {
                 }
             }
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    }
+
+    // Update is called once per frame
+    void Update () {
 
     }
 }
