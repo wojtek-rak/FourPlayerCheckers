@@ -10,10 +10,16 @@ public class TurnController : MonoBehaviour {
         turn = PlayerPosition.Bottom;
     }
 	
-    public void NextTurn()
+    public static void NextTurn()
     {
         if (turn == PlayerPosition.Bottom) turn = PlayerPosition.Upper;
         else turn = PlayerPosition.Bottom;
+    }
+
+    public static PlayerPosition GetOppositePosition(PlayerPosition pos)
+    {
+        if (pos == PlayerPosition.Bottom) return PlayerPosition.Upper;
+        else return PlayerPosition.Bottom;
     }
 
 }

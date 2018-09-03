@@ -22,16 +22,22 @@ public class BoardController : MonoBehaviour {
                 {
                     fields[i, j].Inaccessible = false;
                     fields[i, j].Free = true;
+                    fields[i, j].X = i;
+                    fields[i, j].Y = j;
                 }
                 else if (i % 2 == 1 && j % 2 == 1)
                 {
                     fields[i, j].Inaccessible = false;
                     fields[i, j].Free = true;
+                    fields[i, j].X = i;
+                    fields[i, j].Y = j;
                 }
                 else
                 {
                     fields[i, j].Inaccessible = true;
                     fields[i, j].Free = false;
+                    fields[i, j].X = i;
+                    fields[i, j].Y = j;
                 }
             }
         }
@@ -46,5 +52,10 @@ public class BoardController : MonoBehaviour {
     {
         var index = (width - range) / fieldSize;
         return (int)index;
+    }
+
+    public Vector3 CalculatePosition(int x, int y)
+    {
+        return new Vector3(x * fieldSize + fieldSize / 2f, width - y * fieldSize - fieldSize / 2f, 10f);
     }
 }

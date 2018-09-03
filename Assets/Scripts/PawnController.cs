@@ -20,7 +20,7 @@ public class PawnController : MonoBehaviour {
 
     void OnMouseDown()
     {
-        if(TurnController.turn == playerPosition)
+        if (TurnController.turn == playerPosition)
         {
             moveController.StartHolding(gameObject);
             dragging = true;
@@ -33,6 +33,29 @@ public class PawnController : MonoBehaviour {
         {
             moveController.StopHolding(gameObject);
             dragging = false;
+        }
+    }
+
+    public void Kill()
+    {
+        state = State.Dead;
+        gameObject.GetComponent<Renderer>().enabled = false;
+        var pos = gameObject.transform.localPosition;
+        gameObject.transform.localPosition = new Vector3(pos.x, pos.y, 200f);
+    }
+
+    public void TransformToQueen()
+    {
+        switch (playerPosition)
+        {
+            case PlayerPosition.Bottom:
+                state = State.Queen;
+                gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("player_2_q");
+                break;
+            case PlayerPosition.Upper:
+                state = State.Queen;
+                gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("player_1_q");
+                break;
         }
     }
 

@@ -8,7 +8,6 @@ public class PositionController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         board = GameObject.FindGameObjectWithTag("Board");
-        Debug.Log(board.GetComponent<RectTransform>().rect.width);
     }
 
 }

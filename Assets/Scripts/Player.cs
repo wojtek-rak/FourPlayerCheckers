@@ -34,7 +34,10 @@ public class Player : MonoBehaviour{
         }
         SetUpPawns();
         SetUpColorPawns();
+        
     }
+
+    
     private void SetUpColorPawns()
     {
         Sprite sprite;
@@ -42,7 +45,6 @@ public class Player : MonoBehaviour{
         {
             case PlayerPosition.Upper:
                 sprite = Resources.Load<Sprite>("player_2");
-                Debug.Log(sprite);
                 
                 foreach (var pawn in pawns)
                 {
@@ -51,7 +53,6 @@ public class Player : MonoBehaviour{
                 break;
             case PlayerPosition.Bottom:
                 sprite = Resources.Load<Sprite>("player_1");
-                Debug.Log(sprite);
                 foreach (var pawn in pawns)
                 {
                     pawn.GetComponent<SpriteRenderer>().sprite = sprite;
@@ -74,6 +75,8 @@ public class Player : MonoBehaviour{
                     var pawn = pawns[count];
                     if (board.fields[col, row].Free)
                     {
+                        board.fields[col, row].pawnController = pawn.GetComponent<PawnController>();
+                        board.fields[col, row].playerPosition = PlayerPosition.Upper;
                         board.fields[col, row].Free = false;
                         pawn.transform.localPosition = new Vector3(col * fieldSize + fieldSize / 2f, width - row * fieldSize - fieldSize / 2f, 10f);
                         if (++col >= 8)
@@ -101,7 +104,9 @@ public class Player : MonoBehaviour{
                     var pawn = pawns[count];
                     if (board.fields[col, row].Free)
                     {
+                        board.fields[col, row].pawnController = pawn.GetComponent<PawnController>();
                         board.fields[col, row].Free = false;
+                        board.fields[col, row].playerPosition = PlayerPosition.Bottom;
                         pawn.transform.localPosition = new Vector3(col * fieldSize + fieldSize / 2f, width - row * fieldSize - fieldSize / 2f, 10f);
                         if (--col <= -1)
                         {
@@ -124,4 +129,38 @@ public class Player : MonoBehaviour{
        
     }
 
+    /// <summary>
+    /// testing
+    /// </summary>
+    private void Update()
+    {
+        //<TESTING>
+        if(!xd)
+        {
+            SetupEarlyQeenForSomeFun();
+            xd = true;
+        }
+        
+        //</TESTING?
+    }
+    private bool xd = false;
+    /// <summary>
+    /// TESTING METOD
+    /// </summary>
+    public void SetupEarlyQeenForSomeFun()
+    {
+        if (playerPosition == PlayerPosition.Upper)
+        {
+            Debug.Log("upper done");
+            board.fields[2, 2].pawnController.TransformToQueen();
+            board.fields[2, 2].pawnController.state = State.Queen;
+        }
+        else
+        {
+            Debug.Log("bottom done");
+            board.fields[1, 5].pawnController.TransformToQueen();
+            board.fields[1, 5].pawnController.state = State.Queen;
+        }
+
+    }
 }
