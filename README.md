@@ -1,1 +1,5 @@
 # Checkers
+
+Rules
+----
+in progress
