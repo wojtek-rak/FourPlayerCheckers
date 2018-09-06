@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4457586565869478}
   - component: {fileID: 212064827520914450}
-  - component: {fileID: 114217056142337570}
   - component: {fileID: 58911011272286310}
+  - component: {fileID: 114999361912144754}
   m_Layer: 0
   m_Name: Pawn4
   m_TagString: Untagged
@@ -37,7 +37,7 @@ Transform:
   m_GameObject: {fileID: 1013168807855248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 152.07083, y: 234.31418, z: 0}
-  m_LocalScale: {x: 45, y: 45, z: 1}
+  m_LocalScale: {x: 35, y: 35, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -57,7 +57,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.336
---- !u!114 &114217056142337570
+--- !u!114 &114999361912144754
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1013168807855248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2cd3ba45de7f34439588e3a4f98d48d, type: 3}
+  m_Script: {fileID: 11500000, guid: fdc58074a90c7e449a3e09bd2e31199e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0

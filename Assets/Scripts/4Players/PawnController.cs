@@ -12,7 +12,7 @@ namespace FourPlayers
         public PlayerPosition playerPosition;
         public Field Field { get; set; }
 
-        private MoveController moveController;
+        private MoveManager moveController;
         private bool dragging = false;
         private float distance;
 
@@ -20,12 +20,12 @@ namespace FourPlayers
         {
             state = State.Counter;
             var gameManager = GameObject.FindGameObjectWithTag("GameManager");
-            moveController = gameManager.GetComponent<MoveController>();
+            moveController = gameManager.GetComponent<MoveManager>();
         }
 
         void OnMouseDown()
         {
-            if (TurnController.turn == playerPosition)
+            if (TurnManager.turn == playerPosition)
             {
                 moveController.StartHolding(gameObject);
                 dragging = true;
@@ -34,7 +34,7 @@ namespace FourPlayers
 
         void OnMouseUp()
         {
-            if (TurnController.turn == playerPosition)
+            if (TurnManager.turn == playerPosition)
             {
                 moveController.StopHolding(gameObject);
                 dragging = false;
