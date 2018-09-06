@@ -24,6 +24,7 @@ namespace FourPlayers
             {
                 //check if between two fields is enemy
                 if (board.fields[maxX - 1, maxY - 1].playerPosition != startF.playerPosition &&
+                    board.fields[maxX - 1, maxY - 1].playerPosition != PlayerPosition.Empty &&
                     board.fields[maxX - 1, maxY - 1].Free == false)
                 {
                     //chcek endF is free
@@ -42,7 +43,10 @@ namespace FourPlayers
                 if (endF.Free == true)
                 {
                     if ((startF.playerPosition == PlayerPosition.Upper && endF.Y > startF.Y) ||
-                        (startF.playerPosition == PlayerPosition.Bottom && endF.Y < startF.Y))
+                        (startF.playerPosition == PlayerPosition.Bottom && endF.Y < startF.Y)||
+                        (startF.playerPosition == PlayerPosition.Right && endF.X < startF.X)||
+                        (startF.playerPosition == PlayerPosition.Left && endF.X > startF.X))
+
                     {
                         return true;
                     }
@@ -87,8 +91,8 @@ namespace FourPlayers
                     if (board.fields[startF.X + it * signX, startF.Y + it * signY].Free != true)
                     {
                         if (board.fields[startF.X + it * signX, startF.Y + it * signY].playerPosition == startF.playerPosition) return false;
-                        if (board.fields[startF.X + it * signX, startF.Y + it * signY].playerPosition ==
-                            TurnManager.GetOppositePosition(startF.playerPosition))
+                        if (board.fields[startF.X + it * signX, startF.Y + it * signY].playerPosition != startF.playerPosition &&
+                            board.fields[startF.X + it * signX, startF.Y + it * signY].playerPosition != PlayerPosition.Empty )
                         {
                             BeatX = startF.X + it * signX;
                             BeatY = startF.Y + it * signY;

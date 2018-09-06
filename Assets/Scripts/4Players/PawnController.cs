@@ -64,6 +64,12 @@ namespace FourPlayers
                     state = State.Queen;
                     gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("player_1_q");
                     break;
+                case PlayerPosition.Right:
+                    Debug.Log("TODO");
+                    break;
+                case PlayerPosition.Left:
+                    Debug.Log("TODO");
+                    break;
             }
         }
 

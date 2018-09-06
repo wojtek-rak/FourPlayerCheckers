@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace FourPlayers
 {
-    public enum PlayerPosition { Bottom, Upper, Left, Right }
+    public enum PlayerPosition { Bottom, Upper, Left, Right, Empty }
 
     public class Player : MonoBehaviour
     {
@@ -62,10 +62,19 @@ namespace FourPlayers
                     }
                     break;
                 case PlayerPosition.Right:
-                    Debug.Log("PLAYER_ TODO");
+                    sprite = Resources.Load<Sprite>("player_1");
+                    foreach (var pawn in pawns)
+                    { 
+                        pawn.GetComponent<SpriteRenderer>().sprite = sprite;
+                    }
                     break;
                 case PlayerPosition.Left:
-                    Debug.Log("PLAYER_ TODO");
+                    sprite = Resources.Load<Sprite>("player_2");
+
+                    foreach (var pawn in pawns)
+                    {
+                        pawn.GetComponent<SpriteRenderer>().sprite = sprite;
+                    }
                     break;
             }
         }
@@ -134,11 +143,63 @@ namespace FourPlayers
                         }
                     }
                     break;
-                case PlayerPosition.Right:
-                    Debug.Log("PLAYER_ TODO");
-                    break;
                 case PlayerPosition.Left:
-                    Debug.Log("PLAYER_ TODO");
+                    row = 4;
+                    col = 0;
+                    while (count < pawns.Count)
+                    {
+                        var pawn = pawns[count];
+                        if (board.fields[col, row].Free)
+                        {
+                            board.fields[col, row].PawnController = pawn.GetComponent<PawnController>();
+                            board.fields[col, row].Free = false;
+                            board.fields[col, row].playerPosition = PlayerPosition.Left;
+                            pawn.transform.localPosition = new Vector3(col * fieldSize + fieldSize / 2f, width - row * fieldSize - fieldSize / 2f, 10f);
+                            if (++row >= 12)
+                            {
+                                row = 4;
+                                col += 1;
+                            }
+                            count += 1;
+                        }
+                        else
+                        {
+                            if (++row >= 12)
+                            {
+                                row = 4;
+                                col += 1;
+                            }
+                        }
+                    }
+                    break;
+                case PlayerPosition.Right:
+                    row = 4;
+                    col = 13;
+                    while (count < pawns.Count)
+                    {
+                        var pawn = pawns[count];
+                        if (board.fields[col, row].Free)
+                        {
+                            board.fields[col, row].PawnController = pawn.GetComponent<PawnController>();
+                            board.fields[col, row].Free = false;
+                            board.fields[col, row].playerPosition = PlayerPosition.Right;
+                            pawn.transform.localPosition = new Vector3(col * fieldSize + fieldSize / 2f, width - row * fieldSize - fieldSize / 2f, 10f);
+                            if (++row >= 12)
+                            {
+                                row = 4;
+                                col += 1;
+                            }
+                            count += 1;
+                        }
+                        else
+                        {
+                            if (++row >= 12)
+                            {
+                                row = 4;
+                                col += 1;
+                            }
+                        }
+                    }
                     break;
             }
 

@@ -263,6 +263,8 @@ GameObject:
   - component: {fileID: 298861606}
   - component: {fileID: 298861605}
   - component: {fileID: 298861604}
+  - component: {fileID: 298861610}
+  - component: {fileID: 298861609}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -331,6 +333,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &298861609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 298861603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76dd532426d1c29428e8a0f3726bb57f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pwanPrefab: {fileID: 0}
+  pawns: []
+--- !u!114 &298861610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 298861603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f713141cbcad2e458d048c714979c87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pwanPrefab: {fileID: 0}
+  pawns: []
 --- !u!1 &558298529
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,6 +574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
+  fieldSize: 0
 --- !u!1 &1224630907
 GameObject:
   m_ObjectHideFlags: 0

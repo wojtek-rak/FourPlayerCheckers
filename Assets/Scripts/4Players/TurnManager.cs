@@ -6,7 +6,6 @@ namespace FourPlayers
 {
     public class TurnManager : MonoBehaviour
     {
-
         public static PlayerPosition turn;
 
         void Start()
@@ -16,8 +15,22 @@ namespace FourPlayers
 
         public static void NextTurn()
         {
-            if (turn == PlayerPosition.Bottom) turn = PlayerPosition.Upper;
-            else turn = PlayerPosition.Bottom;
+            switch(turn)
+            {
+                case PlayerPosition.Bottom:
+                    turn = PlayerPosition.Right;
+                    break;
+                case PlayerPosition.Right:
+                    turn = PlayerPosition.Upper;
+                    break;
+                case PlayerPosition.Upper:
+                    turn = PlayerPosition.Left;
+                    break;
+                case PlayerPosition.Left:
+                    turn = PlayerPosition.Bottom;
+                    break;
+            }
+
         }
 
         public static PlayerPosition GetOppositePosition(PlayerPosition pos)

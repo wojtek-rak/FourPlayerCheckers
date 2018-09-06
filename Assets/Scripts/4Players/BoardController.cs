@@ -8,10 +8,14 @@ namespace FourPlayers
     {
         public GameObject pawn;
         public Field[,] fields = new Field[16, 16];
+        public float fieldSize;
 
         // todo better same as player
         private float width = 500f;
-        private float fieldSize;
+        // >= =<
+        private const int rightBCorner = 12;
+        private const int leftUCorenr = 3;
+        private const int longV = 2;
 
         void Awake()
         {
@@ -21,7 +25,7 @@ namespace FourPlayers
                 for (int j = 0; j < 16; j++)
                 {
                     fields[i, j] = new Field();
-
+                    fields[i, j].playerPosition = PlayerPosition.Empty;
                     if (i % 2 == 0 && j % 2 == 0)
                     {
                         fields[i, j].Inaccessible = false;
@@ -43,7 +47,18 @@ namespace FourPlayers
                         fields[i, j].X = i;
                         fields[i, j].Y = j;
                     }
-                    Debug.Log("CORNERS INACES TODO");
+                    
+                    if ((i >= rightBCorner && j >= rightBCorner) ||
+                        (i <= leftUCorenr && j <= leftUCorenr) ||
+                        (i <= leftUCorenr && j >= rightBCorner) ||
+                        (i >= rightBCorner && j <= leftUCorenr))
+                    {
+                        
+                        fields[i, j].Inaccessible = true;
+                        fields[i, j].Free = false;
+                        fields[i, j].X = i;
+                        fields[i, j].Y = j;
+                    }
                 }
             }
         }

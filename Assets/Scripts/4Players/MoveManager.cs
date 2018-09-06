@@ -8,9 +8,11 @@ namespace FourPlayers
     public class MoveManager : MonoBehaviour
     {
 
-        private Player[] players = new Player[2];
+        private Player[] players = new Player[4];
         private readonly int upperPlayer = (int)PlayerPosition.Upper;
         private readonly int bottomPlayer = (int)PlayerPosition.Bottom;
+        private readonly int leftPlayer = (int)PlayerPosition.Left;
+        private readonly int rightPlayer = (int)PlayerPosition.Right;
         private BoardController board;
         private BeatOrDieChecker beatOrDieChecker;
 
@@ -34,6 +36,8 @@ namespace FourPlayers
             var gameManager = GameObject.FindGameObjectWithTag("GameManager");
             players[upperPlayer] = gameManager.GetComponent<PlayerUpperController>();
             players[bottomPlayer] = gameManager.GetComponent<PlayerBottomController>();
+            players[leftPlayer] = gameManager.GetComponent<PlayerLeftController>();
+            players[rightPlayer] = gameManager.GetComponent<PlayerRightController>();
             board = GameObject.FindGameObjectWithTag("Board").GetComponent<BoardController>();
             beatChecker = new BeatChecker(board);
             beatOrDieChecker = new BeatOrDieChecker(beatChecker, board);
@@ -131,6 +135,7 @@ namespace FourPlayers
                 board.fields[beatX, beatY].PawnController.Kill();
                 // beat give you next turn
                 TurnManager.turn = pawnController.playerPosition;
+                beat = false;
             }
             // if you could beat, but you didn't, you lose all pawns that could beat
             else
@@ -146,6 +151,7 @@ namespace FourPlayers
             }
 
             startField.Free = true;
+            startField.playerPosition = PlayerPosition.Empty;
             startField.PawnController = null;
             endField.Free = false;
             endField.playerPosition = pawnController.playerPosition;
