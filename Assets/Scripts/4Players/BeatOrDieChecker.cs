@@ -4,18 +4,34 @@ using UnityEngine;
 
 namespace FourPlayers
 {
+    /// <summary>
+    /// Class for checking if player could beat
+    /// </summary>
     public class BeatOrDieChecker
     {
 
         private const int maxIndex = 15;
         private BoardController board;
         private BeatChecker beatChecker;
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="_beatChecker"></param>
+        /// <param name="_board"></param>
         public BeatOrDieChecker(BeatChecker _beatChecker, BoardController _board)
         {
             beatChecker = _beatChecker;
             board = _board;
         }
-
+        /// <summary>
+        /// Method for checking possibility of beat
+        /// </summary>
+        /// <remarks>
+        /// It check every possible move for Counter and Queen, if beat was possible for specyfic pawn,
+        /// it is added to list which is returned.
+        /// </remarks>
+        /// <param name="pawns">Pawns of player who was moving</param>
+        /// <returns>List of pawns to kill</returns>
         public List<PawnController> CheckBeats(List<PawnController> pawns)
         {
             List<PawnController> pawnsToKill = new List<PawnController>();

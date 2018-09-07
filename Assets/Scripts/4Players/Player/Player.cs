@@ -4,21 +4,52 @@ using UnityEngine;
 
 namespace FourPlayers
 {
-    public enum PlayerPosition { Bottom, Upper, Left, Right, Empty }
-
+    /// <summary>
+    /// Player enum
+    /// </summary>
+    public enum PlayerPosition {
+        /// <summary>Bottom Player</summary>
+        Bottom,
+        /// <summary>Upper Player</summary>
+        Upper,
+        /// <summary>Left Player</summary>
+        Left,
+        /// <summary>Right Player</summary>
+        Right,
+        /// <summary>For empty fields</summary>
+        Empty
+    }
+    /// <summary>
+    /// Abstract Player class
+    /// </summary>
+    /// <remarks>
+    /// Design for max 4 players
+    /// </remarks>
     public abstract class Player : MonoBehaviour
     {
-
+        /// <summary>
+        /// Pawn prefab, same for all players, only what is change is sprite
+        /// </summary>
+        /// <seealso cref="SetUpColorPawns(Sprite)"/>
         public Object pwanPrefab;
+        /// <summary>List of player's pawns</summary>
         public List<PawnController> pawns = new List<PawnController>();
-
-        //protected GameObject pawn => (GameObject)Instantiate(pwanPrefab, Vector3.zero, Quaternion.identity);
+        /// <summary>playerPosition represents position of player</summary>
         protected PlayerPosition playerPosition;
+        /// <summary>Reference to BoardController</summary>
         protected BoardController board;
+        /// <summary>High and width of field on screen</summary>
         protected float fieldSize;
+        /// <summary>Width of board on screen</summary>
         protected float width;
 
-
+        /// <summary>
+        /// Initialize Player
+        /// </summary>
+        /// <remarks>
+        /// Add 12 pawns to pawns List set them children of object which is on
+        /// left-bottom corner on the board, and finally put them on board.
+        /// </remarks>
         protected virtual void Start()
         {
             var tempBoard = GameObject.FindGameObjectWithTag("Board");
@@ -37,7 +68,10 @@ namespace FourPlayers
             SetUpPawns();
         }
 
-
+        /// <summary>
+        /// Method for change pawn's sprite.
+        /// </summary>
+        /// <param name="sprite">sprite for placement</param>
         protected void SetUpColorPawns(Sprite sprite)
         {
             foreach (var pawn in pawns)
@@ -45,7 +79,9 @@ namespace FourPlayers
                 pawn.GetComponent<SpriteRenderer>().sprite = sprite;
             }
         }
-
+        /// <summary>
+        /// Abstract method, for set up position pawns on board
+        /// </summary>
         protected abstract void SetUpPawns();
 
         ///// <summary>

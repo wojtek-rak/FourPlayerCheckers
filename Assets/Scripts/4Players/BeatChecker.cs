@@ -5,17 +5,30 @@ using UnityEngine;
 
 namespace FourPlayers
 {
+    /// <summary>
+    /// Class for checking if beat is correct
+    /// </summary>
     public class BeatChecker
     {
-
-        private BoardController board;
+        /// <summary>First index in fields array, set if was beat</summary>
         public int BeatX { get; set; }
+        /// <summary>Second index in fields array, set if was beat</summary>
         public int BeatY { get; set; }
+        private BoardController board;
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="_board">BoardController</param>
         public BeatChecker(BoardController _board)
         {
             board = _board;
         }
-
+        /// <summary>
+        /// Check if pawn with state Counter can beat
+        /// </summary>
+        /// <param name="startF"></param>
+        /// <param name="endF"></param>
+        /// <returns>True if beat is correct, or false</returns>
         public bool CanCounterBeat(Field startF, Field endF)
         {
             var maxX = Math.Max(startF.X, endF.X);
@@ -36,6 +49,12 @@ namespace FourPlayers
             }
             return false;
         }
+        /// <summary>
+        /// Check if pawn with state Counter can move
+        /// </summary>
+        /// <param name="startF"></param>
+        /// <param name="endF"></param>
+        /// <returns>True if move is correct, or false</returns>
         public bool CanCounterMove(Field startF, Field endF)
         {
             if (Math.Abs(startF.X - endF.X) == 1 && Math.Abs(startF.Y - endF.Y) == 1)
@@ -54,7 +73,12 @@ namespace FourPlayers
             }
             return false;
         }
-
+        /// <summary>
+        /// Check if pawn with state Queen can move
+        /// </summary>
+        /// <param name="startF"></param>
+        /// <param name="endF"></param>
+        /// <returns>True if move is correct, or false</returns>
         public bool CanQueenMove(Field startF, Field endF)
         {
             var signX = 1;
@@ -74,7 +98,12 @@ namespace FourPlayers
             }
             return false;
         }
-
+        /// <summary>
+        /// Check if pawn with state Queen can beat
+        /// </summary>
+        /// <param name="startF"></param>
+        /// <param name="endF"></param>
+        /// <returns>True if beat is correct, or false</returns>
         public bool CanQueenBeat(Field startF, Field endF)
         {
             var signX = 1;
