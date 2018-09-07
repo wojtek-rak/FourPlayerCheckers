@@ -94,12 +94,7 @@ namespace FourPlayers
                     {
                         move = true;
                     }
-                    if (move)
-                    {
-                        return true;
-                    }
-                    return false;
-
+                    break;
                 case State.Queen:
                     Debug.Log("QUEEN MOVE");
                     if (beatChecker.CanQueenMove(startField, endField)) move = true;
@@ -110,15 +105,15 @@ namespace FourPlayers
                         beatX = beatChecker.BeatX;
                         beatY = beatChecker.BeatY;
                     }
-
-                    if (move)
-                    {
-                        return true;
-                    }
-                    return false;
+                    break;
                 default:
                     return false;
             }
+            if (move)
+            {
+                return true;
+            }
+            return false;
         }
 
 
@@ -127,17 +122,13 @@ namespace FourPlayers
             var startField = board.fields[posStartX, posStartY];
             var endField = board.fields[posEndX, posEndY];
 
-
-
             TurnManager.NextTurn();
             if (beat)
             {
                 board.fields[beatX, beatY].PawnController.Kill();
-                // beat give you next turn
                 TurnManager.turn = pawnController.playerPosition;
                 beat = false;
             }
-            // if you could beat, but you didn't, you lose all pawns that could beat
             else
             {
                 var pawnsToDie = beatOrDieChecker.CheckBeats(players[(int)startField.playerPosition].pawns);
@@ -170,11 +161,18 @@ namespace FourPlayers
             switch (startF.playerPosition)
             {
                 case PlayerPosition.Upper:
-                    if (endF.Y == lastIndex) queen = true;
+                    if (endF.Y == lastIndex || endF.X == firstIndex || endF.X == lastIndex) queen = true;
                     break;
                 case PlayerPosition.Bottom:
-                    if (endF.Y == firstIndex) queen = true;
+                    if (endF.Y == firstIndex || endF.X == firstIndex || endF.X == lastIndex) queen = true;
                     break;
+                case PlayerPosition.Right:
+                    if (endF.Y == firstIndex || endF.Y == lastIndex || endF.X == firstIndex ) queen = true;
+                    break;
+                case PlayerPosition.Left:
+                    if (endF.Y == firstIndex || endF.Y == lastIndex || endF.X == lastIndex) queen = true;
+                    break;
+
             }
         }
     }

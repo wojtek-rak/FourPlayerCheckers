@@ -28,24 +28,15 @@ namespace FourPlayers
                     fields[i, j].playerPosition = PlayerPosition.Empty;
                     if (i % 2 == 0 && j % 2 == 0)
                     {
-                        fields[i, j].Inaccessible = false;
-                        fields[i, j].Free = true;
-                        fields[i, j].X = i;
-                        fields[i, j].Y = j;
+                        SetUpField(i, j, true);
                     }
                     else if (i % 2 == 1 && j % 2 == 1)
                     {
-                        fields[i, j].Inaccessible = false;
-                        fields[i, j].Free = true;
-                        fields[i, j].X = i;
-                        fields[i, j].Y = j;
+                        SetUpField(i, j, true);
                     }
                     else
                     {
-                        fields[i, j].Inaccessible = true;
-                        fields[i, j].Free = false;
-                        fields[i, j].X = i;
-                        fields[i, j].Y = j;
+                        SetUpField(i, j, false);
                     }
                     
                     if ((i >= rightBCorner && j >= rightBCorner) ||
@@ -53,11 +44,7 @@ namespace FourPlayers
                         (i <= leftUCorenr && j >= rightBCorner) ||
                         (i >= rightBCorner && j <= leftUCorenr))
                     {
-                        
-                        fields[i, j].Inaccessible = true;
-                        fields[i, j].Free = false;
-                        fields[i, j].X = i;
-                        fields[i, j].Y = j;
+                        SetUpField(i, j, false);
                     }
                 }
             }
@@ -77,6 +64,13 @@ namespace FourPlayers
         public Vector3 CalculatePosition(int x, int y)
         {
             return new Vector3(x * fieldSize + fieldSize / 2f, width - y * fieldSize - fieldSize / 2f, 10f);
+        }
+        
+        private void SetUpField(int x, int y, bool free)
+        {
+            fields[x, y].Free = free;
+            fields[x, y].X = x;
+            fields[x, y].Y = y;
         }
     }
 }

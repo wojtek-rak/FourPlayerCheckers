@@ -128,6 +128,7 @@ namespace FourPlayers
             range[1] = new int[2];
             range[2] = new int[2];
             range[3] = new int[2];
+
             range[0][0] = maxIndex;
             range[0][1] = maxIndex;
 

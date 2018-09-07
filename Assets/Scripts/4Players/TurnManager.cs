@@ -33,12 +33,6 @@ namespace FourPlayers
 
         }
 
-        public static PlayerPosition GetOppositePosition(PlayerPosition pos)
-        {
-            if (pos == PlayerPosition.Bottom) return PlayerPosition.Upper;
-            else return PlayerPosition.Bottom;
-        }
-
     }
 }
 
